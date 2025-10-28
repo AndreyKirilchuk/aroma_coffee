@@ -96,6 +96,9 @@
                 @foreach($reviews as $item)
                     <div class="slide">
                         <img src="{{asset($item->img)}}" alt="{{$item->name}}">
+                        <div class="slide_name">
+                            {{$item->user->firstname}}
+                        </div>
                         <div class="stars">
                             @for($i = 0; $i < 5; $i++)
                                 <span class="star {{$item->grade > $i ? 'active' : ''}}">★</span>

@@ -170,8 +170,9 @@ header button {
     margin-top: auto;
     position: absolute;
     max-height: 340px;
-    left: 25%;
+    left: 20%;
     top: 35%;
+    max-width: 465px;
 }
 
 .history-text h2 {
@@ -203,7 +204,7 @@ header button {
     width: 574px;
     height: 465px;
     position: absolute;
-    left: 70%;
+    left: 75%;
     top: 50%;
     transform: translate(-70%, -50%);
 }
@@ -427,7 +428,7 @@ img {
     justify-content: space-between;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2,1fr);
 }
 
 .adv {
@@ -619,22 +620,32 @@ footer {
 
 /* ========== АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ ========== */
 
-@media (max-width: 1200px) {
+@media (max-width: 1440px) {
     .container {
         padding: 0 20px;
     }
 
     .history-text{
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        left: 15%;
     }
 
     .kakao_block{
-        transform: translate(0);
-        left: 30%;
-        top: 10%;
+        left:75%;
     }
+}
+
+@media (max-width: 1280px) {
+    .history-text{
+        left: 10%;
+    }
+
+    .kakao_block{
+        left:75%;
+    }
+}
+
+@media (max-width: 1024px) {
+
 }
 
 @media (max-width: 992px) {
@@ -669,6 +680,31 @@ footer {
 
     .hero h1{
         font-size: 28px;
+    }
+
+    .history-text {
+        height: auto;
+        min-height: 300px;
+        left: 0;
+        top: 0;
+        transform: translate(0);
+        position: static;
+        width: 100%;
+        max-width:574px;
+    }
+
+    .kakao_block{
+        position: static;
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding: 0;
+        transform: translate(0);
+        max-width: 100%;
+    }
+
+    .history-block{
+        flex-direction: column-reverse;
     }
 }
 
@@ -758,17 +794,6 @@ footer {
         top: 0;
         padding: 0;
         transform: translate(0);
-    }
-
-    .history-text{
-        position: static;
-        width: 100%;
-        left: 0;
-        top: 0;
-    }
-
-    .history-block{
-        flex-direction: column-reverse;
     }
 }
 
@@ -1068,6 +1093,10 @@ footer {
     .footer-center {
         flex-direction: column;
         gap: 20px;
+    }
+
+    .advantages{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
 
