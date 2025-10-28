@@ -61,5 +61,61 @@
             <br>
             <button type="submit" class="edit-button">Изменить</button>
         </form>
+        <form action="/logout" method="post">
+            @csrf
+            <button type="submit" class="edit-button">Выйти из аккаунта</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <section class="sladosti_block">
+            <h2 class="sladosti_text">Избранные товары</h2>
+            <div class="products">
+                @foreach($products as $product)
+                    <div class="product">
+                        <div class="photo"><img class="photo_cftflog" src="{{asset($product->img)}}"
+                                                alt="{{$product->name}}"></div>
+                        <br>
+                        <p>{{$product->name}} <br>{{$product->price}} р.</p><br>
+                        <form action="/products/{{$product->id}}/favorites/delete" method="post">
+                            @csrf
+                            <button class="izbrannoe">Удалить из избранного</button>
+                        </form>
+                    </div>
+                @endforeach
+
+                @if($products->count() === 0)
+                    Товаров не найдено
+                @endif
+            </div>
+        </section>
+
+        <section class="reviews">
+            <h2 class="review_text">Мои отзывы</h2>
+            <div class="container slider">
+                @foreach($reviews as $item)
+                    <div class="slide">
+                        <img src="{{asset($item->img)}}" alt="{{$item->name}}">
+                        <div class="stars">
+                            @for($i = 0; $i < 5; $i++)
+                                <span class="star {{$item->grade > $i ? 'active' : ''}}">★</span>
+                            @endfor
+                        </div>
+                        <p>{{$item->text}}</p>
+
+                        <form action="/reviews/{{$item->id}}/delete" method="post">
+                            @csrf
+                            <button>Удалить</button>
+                        </form>
+                    </div>
+                @endforeach
+            </div>
+
+            @if($reviews->count() === 0)
+                <div class="review_text">
+                    Отзывов не найдено
+                </div>
+            @endif
+        </section>
     </div>
 @endsection

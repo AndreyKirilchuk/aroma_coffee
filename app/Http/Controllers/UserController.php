@@ -9,8 +9,10 @@ class UserController extends Controller
     public function profile()
     {
         $user = auth()->user();
+        $products = $user->favoriteProducts()->get();
+        $reviews = $user->reviews()->get();
 
-        return view('pages.profile', compact('user'));
+        return view('pages.profile', compact('user', 'products', 'reviews'));
     }
 
     public function update(Request $request)

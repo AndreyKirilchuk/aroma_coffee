@@ -1,7 +1,7 @@
 @extends('layouts.index')
 
 @section('content')
-    <main>
+    <main class="container">
         <section class="welcome">
             <div class="welcome-left">
                 <div class="welcome-text">

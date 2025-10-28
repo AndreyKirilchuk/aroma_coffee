@@ -17,7 +17,7 @@ class UserCheck
     {
         $user = auth()->user();
 
-        if(!$user) return back();
+        if(!$user) return redirect('/login');
 
         return $next($request);
     }

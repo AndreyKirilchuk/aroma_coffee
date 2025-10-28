@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,22 @@ Route::middleware(\App\Http\Middleware\UserCheck::class)->group(function () {
     Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout']);
 
     Route::post('/user/update', [UserController::class, 'update']);
+
+    Route::post('/products/{product}/favorites/add', [\App\Http\Controllers\ProductFavoriteController::class, 'store']);
+    Route::post('/products/{product}/favorites/delete', [\App\Http\Controllers\ProductFavoriteController::class, 'destroy']);
+
+    Route::get('/reviews/add', [\App\Http\Controllers\ReviewController::class, 'getAdd']);
+    Route::post('/reviews/add', [\App\Http\Controllers\ReviewController::class, 'store']);
+    Route::post('/reviews/{review}/delete', [\App\Http\Controllers\ReviewController::class, 'destroy']);
 });
 
 Route::middleware(\App\Http\Middleware\AdminCheck::class)->group(function () {
-    Route::get('/admin', [AdminController::class, 'index']);
+    Route::prefix('admin')->group(function () {
+        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/products/create', [AdminController::class, 'getCreate']);
+        Route::get('/products/{product}/update', [AdminController::class, 'getUpdate']);
+        Route::post('/products', [ProductController::class, 'store']);
+        Route::post('/products/{product}/update', [ProductController::class, 'update']);
+        Route::post('/products/{product}/delete', [ProductController::class, 'destroy']);
+    });
 });

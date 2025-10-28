@@ -17,6 +17,6 @@
     @include('components.footer')
 @endif
 
-<script src="{{asset('assets/js/main.js')}}"></script>
+<script src="{{asset('assets/js/form.js')}}"></script>
 </body>
 </html>
